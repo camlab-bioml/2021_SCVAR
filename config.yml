@@ -1,0 +1,12 @@
+
+dbsnp: /home/campbell/share/datasets/dbsnp/population_frequency/freq.vcf.gz
+
+vartrix: /home/campbell/share/software/vartrix_linux
+
+fasta: /home/campbell/share/datasets/references/cellranger/refdata-gex-GRCh38-2020-A/fasta/genome.fa
+
+cellranger_base_path: /home/campbell/share/datasets/peng-2019-cellranger
+
+chrmap: chr-map.txt
+
+
