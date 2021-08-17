@@ -3,10 +3,14 @@ dbsnp: /home/campbell/share/datasets/dbsnp/population_frequency/freq.vcf.gz
 
 vartrix: /home/campbell/share/software/vartrix_linux
 
+cellsnp: /home/campbell/share/software/cellsnp-lite/cellsnp-lite
+
 fasta: /home/campbell/share/datasets/references/cellranger/refdata-gex-GRCh38-2020-A/fasta/genome.fa
 
 cellranger_base_path: /home/campbell/share/datasets/peng-2019-cellranger
 
 chrmap: chr-map.txt
+
+snpdata: snp-data/genome1K.phase3.SNP_AF5e4.chr1toX.hg38.vcf.gz
 
 

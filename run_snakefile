@@ -1,2 +1,3 @@
 rm slurm-*
-snakemake -k --profile slurm --jobs 4 --cluster-config cluster-config.yml
+snakemake -k --profile slurm --jobs 20 
+
