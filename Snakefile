@@ -2,27 +2,14 @@
 
 configfile: 'config.yml'
 
-ids = ['CRR034499',
-    'CRR034500',
-    'CRR034501',
-    'CRR034503',
-    'CRR034504',
-    'CRR034506',
-    'CRR034507',
-    'CRR034509',
-    # 'CRR034510',
-    'CRR034513',
-    'CRR034516',
-    'CRR034517',
-    'CRR034518',
-    'CRR034520',
-    'CRR034524',
-    'CRR034527']
+ids = config['ids']
 
 
 rule all:
     input:
-        expand('output/cellsnp/{id}/cellSNP.tag.AD.mtx', id=ids)
+        expand('output/cellsnp/{id}/cellSNP.tag.AD.mtx', id=ids),
+        expand('output/expression/sces/sce_{id}.rds', id=ids),
+        'output/expression/sce.rds'
 
 
 rule subset_vcf:
@@ -58,4 +45,25 @@ rule cellsnp:
         '--minMAF 0.1 --minCOUNT 20 '
 
 
-# ../../software/cellsnp-lite/cellsnp-lite -s /home/campbell/share/datasets/peng-2019-cellranger/CRR034527/outs/possorted_genome_bam.bam -b /home/campbell/share/datasets/peng-2019-cellranger/CRR034527/outs/filtered_feature_bc_matrix/barcodes.tsv.gz -O test/ -p 4 --minMAF 0.1 --minCOUNT 20 -R output/vcf/genome1K_chr6.vcf
+rule to_expression_sces:
+    params:
+        dir = lambda wildcards: config['cellranger_base_path'] + f'/{wildcards.id}/outs/filtered_feature_bc_matrix/'
+    input:
+        config['cellranger_base_path'] + '/{id}/outs/filtered_feature_bc_matrix/barcodes.tsv.gz'
+    output:
+        'output/expression/sces/sce_{id}.rds'
+    shell:
+        'Rscript to-expression-sce.R '
+        '--input_dir {params.dir} '
+        '--id {wildcards.id} '
+        '--output {output} '
+
+rule to_expression_sce:
+    input:
+        expand('output/expression/sces/sce_{id}.rds', id=ids),
+    output:
+        'output/expression/sce.rds'
+    shell:
+        'Rscript concat-sce.R '
+        '--input_dir output/expression/sces '
+        '--output {output} '
