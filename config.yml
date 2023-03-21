@@ -1,4 +1,6 @@
 
+version: v2
+
 dbsnp: /home/campbell/share/datasets/dbsnp/population_frequency/freq.vcf.gz
 
 vartrix: /home/campbell/share/software/vartrix_linux
@@ -12,6 +14,10 @@ cellranger_base_path: /home/campbell/share/datasets/peng-2019-cellranger
 chrmap: chr-map.txt
 
 snpdata: snp-data/genome1K.phase3.SNP_AF5e4.chr1toX.hg38.vcf.gz
+
+eagle: /home/campbell/share/projects/pdacvar/tools/Eagle_v2.4.1/eagle
+gmap: /home/campbell/share/projects/pdacvar/tools/Eagle_v2.4.1/tables/genetic_map_hg38_withX.txt.gz
+
 
 ids:
   - CRR034499
